@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package edu.usfca.protobuf;
+
+import "common.proto";
+import "event.proto";
+import "vendor/openrtb.proto";
+
+message PurchaserProfile {
+  DeviceId id = 1;
+  
+  // total number of purchase events (for this user).
+  int32 purchase_total = 2; // Do NOT remove this field. It serves as an example, but it will also be tested.
+  
+  repeated string apps = 3;
+  repeated AppStats stats = 4;
+  
+  message AppStats {
+    int32 amount = 1;
+    int32 count = 2;
+    
+    repeated int32 event_days = 3;
+  }
+}
+
+// This summarizes IAP amounts/counts for each app bundle.
+message InAppPurchaseProfile {
+  // DO NOT MODIFY THIS PROTO MESSAGE. THIS WILL BE USED AS-IS IN ALL TESTS.
+  
+  // bundle (unique ID for apps)
+  string bundle = 1;
+  
+  // total number of unique purchasers (in this app)
+  int64 num_purchasers = 2;
+  
+  // sum of purchase amounts (in this app)
+  int64 total_amount = 3;
+}
+
+// A mobile device profile.
+message DeviceProfile {
+  reserved 2 to 4, 6 to 8, 13 to 100; // Do NOT modify this.
+  //Do NOT add any more fields to this message (DeviceProfile).
+
+  // Unique id for each device.
+  string deviceId = 1;
+
+  int64 first_at = 9;
+
+  // An array of summaries of App Activity.
+  // AppActivity messages must have unique bundles (under the same DeviceProfile).
+  repeated AppActivity app = 5;
+
+  //  repeated GeoActivity geo = 11;
+  repeated string geo = 11;
+  //  repeated string country = 10;
+  //  repeated string region = 11;
+
+  message AppActivity {
+    reserved 7 to 100; // Do NOT modify this.
+    //Do NOT add any more fields to this message (AppActivity).
+
+    // Unique store bundle of an app.
+    string bundle = 1;
+
+    // Timestamp (in millis) of the first/last in-app activity.
+    //    int64 first_at = 4;
+    //    int64 last_at = 3;
+
+    //    map<int32, int32> count_per_exchange = 6;
+    repeated uint32 exchange = 2;
+    repeated uint32 count = 3;
+
+  }
+
+  // Each GeoActivity message indicates that a user was using some app (from which we received a bid request) in a specific geo.
+  message GeoActivity {
+    // You may add additional fields to this message, if you find it useful.
+
+    // country & region (from which we received a bid request for a user); these strings are case-sensitive!
+    string country = 1;
+    string region = 2;
+  }
+}
+
+// AppProfile describes a specific app's info.
+// After we first aggregate DeviceProfile data,
+// we will use it to produce AppProfile aggregates.
+message AppProfile {
+  // Do NOT modify this. Do NOT add any more fields.
+
+  // bundle is a unique ID for an app (regardless of OS).
+  string bundle = 1;
+
+  // Total number of unique users (unique device ids) based on the (lifetime) DeviceProfile data.
+  int32 user_count = 2;
+
+  // Total number of unique users (unique device ids) per exchange, based on the (lifetime) DeviceProfile data.
+  map<int32, int32> _user_count_per_exchange = 3;
+
+  // In project 5, this field is not used.
+  // Total number of unique users based on today's daily DeviceProfile data.
+  // int32 today_user_count = 4;
+}
