@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package edu.usfca.protobuf;
+
+import "vendor/openrtb.proto";
+
+// This defines a log message that "our bidding servers" will create.
+// Each BidLog message contains the original BidRequest and other useful information.
+// Each BidRequest is expected to result in at most one BidLog from our servers (it could be "lossy").
+message BidLog {
+  reserved 8 to 100; // Do NOT modify this. Do NOT add any more fields.
+  
+  // Original BidRequest proto.
+  com.google.openrtb.BidRequest bid_request = 1;
+  
+  Exchange exchange = 2;
+  
+  // received_at and processed_at are timestamps in (UNIX) millis in UTC.
+  // received_at: When the request was received by our bid servers.
+  // processed_at: When the request was processed by our bid servers.
+  int64 received_at = 3;
+  int64 processed_at = 4;
+  
+  // Result code from bidder engine.
+  BidResult bid_result = 5;
+  
+  // This represents the (positive) price at which we bid (if we bid).
+  // This should be 0 (default value) when bid_result is not "BID".
+  int32 bid_price = 6;
+  
+  // In case of corrupted data or abnormal latency (based on received_at & processed_at),
+  // we may want to know which bid server caused such corrupted data.
+  // This field stores the name/ID of our bid server (responsible for a specific BidLog message).
+  string bid_server = 7;
+  
+  enum BidResult {
+    UNKNOWN_RESULT = 0;
+    BID = 1;
+    NO_CANDIDATE = 2;
+    INVALID_REQUEST = 3;
+  }
+}
+
+enum Exchange {
+  UNKNOWN_EXCHANGE = 0;
+  ADX = 1;
+  MOPUB = 2;
+  UNITY = 3;
+  OPENX = 4;
+  VUNGLE = 5;
+  INMOBI = 6;
+  FYBER = 7;
+  APPLOVIN = 8;
+  ADCOLONY = 9;
+  SMAATO = 10;
+}

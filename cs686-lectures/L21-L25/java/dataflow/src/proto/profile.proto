@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package edu.usfca.protobuf;
+
+import "bid.proto";
+
+message ExchangeProfile {
+  reserved 2 to 100; // Do NOT modify this. Do NOT add any more fields.
+  reserved 102 to 1000; // Do NOT modify this. Do NOT add any more fields.
+  reserved 1002 to 10000; // Do NOT modify this. Do NOT add any more fields.
+  
+  Exchange exchange = 1;
+  
+  map<int32, int32> count_per_bid_result = 101;
+  
+  map<int32, int64> total_bid_price_per_bid_result = 1001;
+}

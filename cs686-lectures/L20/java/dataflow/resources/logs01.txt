@@ -1,0 +1,33 @@
+Dataflow SDK version: 2.16.0
+Mar 12, 2020 7:47:38 AM org.apache.beam.sdk.extensions.gcp.util.RetryHttpRequestInitializer$LoggingHttpBackOffHandler handleResponse
+WARNING: Request failed with code 400, performed 0 retries due to IOExceptions, performed 0 retries due to unsuccessful status codes, HTTP framework says request can be retried, (caller responsible for retrying): https://dataflow.googleapis.com/v1b3/projects/beer-spear/locations/us-west1/jobs.
+Exception in thread "main" java.lang.RuntimeException: Failed to create a workflow job: (48bdef89efec51e9): Dataflow API is not enabled. Please use the Cloud Platform Console, https://console.developers.google.com/apis/api/dataflow.googleapis.com/overview?project=beer-spear, to enable Dataflow API.
+	at org.apache.beam.runners.dataflow.DataflowRunner.run(DataflowRunner.java:933)
+	at org.apache.beam.runners.dataflow.DataflowRunner.run(DataflowRunner.java:186)
+	at org.apache.beam.sdk.Pipeline.run(Pipeline.java:315)
+	at org.apache.beam.sdk.Pipeline.run(Pipeline.java:301)
+	at edu.usfca.dataflow.Main.main(Main.java:73)
+Caused by: com.google.api.client.googleapis.json.GoogleJsonResponseException: 400 Bad Request
+{
+  "code" : 400,
+  "errors" : [ {
+    "domain" : "global",
+    "message" : "(48bdef89efec51e9): Dataflow API is not enabled. Please use the Cloud Platform Console, https://console.developers.google.com/apis/api/dataflow.googleapis.com/overview?project=beer-spear, to enable Dataflow API.",
+    "reason" : "failedPrecondition"
+  } ],
+  "message" : "(48bdef89efec51e9): Dataflow API is not enabled. Please use the Cloud Platform Console, https://console.developers.google.com/apis/api/dataflow.googleapis.com/overview?project=beer-spear, to enable Dataflow API.",
+  "status" : "FAILED_PRECONDITION"
+}
+	at com.google.api.client.googleapis.json.GoogleJsonResponseException.from(GoogleJsonResponseException.java:150)
+	at com.google.api.client.googleapis.services.json.AbstractGoogleJsonClientRequest.newExceptionOnError(AbstractGoogleJsonClientRequest.java:113)
+	at com.google.api.client.googleapis.services.json.AbstractGoogleJsonClientRequest.newExceptionOnError(AbstractGoogleJsonClientRequest.java:40)
+	at com.google.api.client.googleapis.services.AbstractGoogleClientRequest$1.interceptResponse(AbstractGoogleClientRequest.java:417)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:1089)
+	at com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:515)
+	at com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:448)
+	at com.google.api.client.googleapis.services.AbstractGoogleClientRequest.execute(AbstractGoogleClientRequest.java:565)
+	at org.apache.beam.runners.dataflow.DataflowClient.createJob(DataflowClient.java:61)
+	at org.apache.beam.runners.dataflow.DataflowRunner.run(DataflowRunner.java:919)
+	... 4 more
+
+Process finished with exit code 1

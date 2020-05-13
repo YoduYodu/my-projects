@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package edu.usfca.protobuf;
+
+// test code for lecture.
+// https://developers.google.com/protocol-buffers/docs/proto3
+message SearchRequest {
+    string query = 1;
+    int32 page_number = 2; // Which page number do we want?
+    int32 result_per_page = 3; // Number of results to return per page.
+
+    message Nested {
+        string some_id = 1;
+        int64 some_value = 2;
+        repeated string some_data = 3;
+        string even_more_data = 4;
+        int64 even_more_value = 5;
+    }
+}
+
+message NotNested {
+    string some_id = 1;
+    int64 some_value = 2;
+    repeated string some_data = 3;
+    string even_more_data = 4;
+    int64 even_more_value = 5;
+}

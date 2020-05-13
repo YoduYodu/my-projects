@@ -1,0 +1,1 @@
+use multiples of 5 seconds for the timestamps. maybe 20 30 35 40 55?
