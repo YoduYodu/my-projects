@@ -1,16 +1,8 @@
-# Grand Finale #
+# Project introduction
 
-You can do whatever you want to do in this project, as long as things do not break.
+### After completing this course, students will be able to:
 
-For other details, refer to previous assignments' instructions (such as IDE setup, etc.).
-
-Enjoy!
-
-# Deadline #
-
-May 1 by midnight for all three tasks.
-
-# Detailed Instructions #
-
-https://docs.google.com/document/d/1BzzXFtQS55qHdDQvsgdR07JJ9sjRkpgh72ked0sHKQw/edit?usp=sharing
-
+- Understand the MapReduce framework and use Apache Beam Java SDK to develop a data processing pipeline that can efficiently process big data in cloud,
+- Analyze large, complex data using BigQuery and provide analytic insights, and
+- Integrate various components & steps in cloud (storage, data cleanup, data transformation, and data analytics) in order to complete an efficient, end-to-end data processing pipeline.
+- Utilize Beam SDK, BigQuery, GCS.
