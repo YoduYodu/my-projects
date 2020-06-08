@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package edu.usfca.protobuf;
-
-message StructuredData {
-    string device_id = 1;
-    string app_id = 2;
-}
