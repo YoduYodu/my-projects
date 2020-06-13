@@ -1,0 +1,29 @@
+// Downloaded from https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-proto.txt
+// Version 2.5.0 (Jan 23, 2020)
+
+option java_outer_classname = "OpenRtb";
+package com.google.openrtb;
+
+message BidRequest {
+    optional App app = 4;
+
+    optional Device device = 5;
+
+    message App {
+        optional string bundle = 8;
+    }
+
+    message Device {
+        optional Geo geo = 4;
+
+        optional string os = 14;
+
+        optional string ifa = 20;
+    }
+
+    message Geo {
+        optional string country = 3;
+
+        optional string region = 4;
+    }
+}
