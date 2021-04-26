@@ -23,6 +23,3 @@ def luck_draw_response_code(luck_draw_response):
 @then('the response shows <result>')
 def luck_draw_response_result(luck_draw_response, result):
     assert result == luck_draw_response
-
-
-
