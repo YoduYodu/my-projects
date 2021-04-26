@@ -8,7 +8,7 @@ Feature:  Lucky draw features
     Then the response status code is 200
     And the response shows <result>
 
-    Examples: comics
+    Examples: draws
       | number   | result                       |
       | 1        | Oh you are not so lucky      |
       | 2        | Geez you are extremely lucky |

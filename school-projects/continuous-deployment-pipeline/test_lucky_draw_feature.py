@@ -3,7 +3,7 @@ import requests
 
 from pytest_bdd import scenarios, when, then
 
-API = 'https://rickandmortyapi.com/api/character/'
+API = 'http://0.0.0.0:5000/'
 
 scenarios('./features/app.feature', example_converters=dict(number=int, result=str))
 
@@ -11,7 +11,7 @@ scenarios('./features/app.feature', example_converters=dict(number=int, result=s
 @pytest.fixture
 @when('the Lucky Draw API is queried with <number>')
 def luck_draw_response(number):
-    response = requests.get(API + str(id))
+    response = requests.get(API + str(number))
     return response
 
 
@@ -22,4 +22,4 @@ def luck_draw_response_code(luck_draw_response):
 
 @then('the response shows <result>')
 def luck_draw_response_result(luck_draw_response, result):
-    assert result == luck_draw_response
+    assert result == luck_draw_response.text
